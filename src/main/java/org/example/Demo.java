@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.Set;
@@ -43,6 +44,10 @@ public class Demo {
         WebElement sexChkbox = driver.findElement(By.cssSelector("#checkbox-1"));
         sexChkbox.click();
 
+        Select experienceLstBox = new Select(driver.findElement(By.cssSelector("#select-menu")));
+        experienceLstBox.selectByValue("3");
+        experienceLstBox.selectByVisibleText("10+");
+
         WebElement submitButton = driver.findElement(By.cssSelector(".btn-primary"));
         submitButton.click();
 
@@ -54,5 +59,4 @@ public class Demo {
 
         driver.quit();
     }
-
 }
