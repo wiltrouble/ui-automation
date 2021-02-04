@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertEquals;
+
 public class Demo {
 
     @Test
     public void demo() {
 
-        // browser comunication
+        // browser communication
         WebDriverManager.chromedriver().setup();
 
         // open browser
@@ -25,14 +27,32 @@ public class Demo {
 
         // load url
         driver.get("http://formy-project.herokuapp.com/form");
-        
-        List<WebElement> checkboxs = driver.findElements(By.cssSelector("input[type='checkbox']"));
 
-        System.out.println(checkboxs.size());
+        WebElement firstName = driver.findElement(By.cssSelector("#first-name"));
+        firstName.sendKeys("wilson");
+
+        WebElement lastName = driver.findElement(By.cssSelector("#last-name"));
+        lastName.sendKeys("lopez");
+
+        WebElement jobTitle = driver.findElement(By.cssSelector("#job-title"));
+        jobTitle.sendKeys("Automation");
+
+        WebElement educationRadioBtn = driver.findElement(By.cssSelector("#radio-button-1"));
+        educationRadioBtn.click();
+
+        WebElement sexChkbox = driver.findElement(By.cssSelector("#checkbox-1"));
+        sexChkbox.click();
+
+        WebElement submitButton = driver.findElement(By.cssSelector(".btn-primary"));
+        submitButton.click();
+
+        String successfullyMessageExpected = "The form was successfully submitted!";
+
+        WebElement message = driver.findElement(By.cssSelector(".alert-success"));
+
+        assertEquals(successfullyMessageExpected, message.getText());
 
         driver.quit();
-
-
     }
 
 }
