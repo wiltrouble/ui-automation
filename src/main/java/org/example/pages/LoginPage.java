@@ -1,6 +1,7 @@
-package org.example;
+package org.example.pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.example.pages.BoardsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;

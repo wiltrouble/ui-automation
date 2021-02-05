@@ -1,6 +1,9 @@
-package org.example;
+package org.example.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.example.pages.BoardPage;
+import org.example.pages.BoardsPage;
+import org.example.pages.LoginPage;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;

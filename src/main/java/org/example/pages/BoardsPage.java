@@ -1,5 +1,6 @@
-package org.example;
+package org.example.pages;
 
+import org.example.pages.BoardPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
