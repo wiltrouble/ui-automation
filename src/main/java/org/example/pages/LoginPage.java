@@ -1,11 +1,9 @@
 package org.example.pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.pages.BoardsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -13,6 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class LoginPage {
 
     private WebDriver driver;
+    private By trelloLink;
+    private By userNameTxtBox;
+    private By loginBtn;
+    private By passwordTxtBox;
+    private By loginSubmitBtn;
+
 
     public LoginPage(){
         // browser communication
@@ -29,16 +33,20 @@ public class LoginPage {
     }
 
     public BoardsPage loginAs(String username, String password) {
-        WebElement usernameTxtBox = driver.findElement(By.cssSelector("#username"));
-        usernameTxtBox.sendKeys(username);
-        WebElement loginBtn = driver.findElement(By.cssSelector("#login-submit"));
-        loginBtn.click();
-        WebElement passwordTxtBox = driver.findElement(By.cssSelector("#password"));
-        passwordTxtBox.sendKeys(password);
-        WebElement loginWithBtn = driver.findElement(By.cssSelector("#login-submit"));
-        loginWithBtn.click();
-        WebElement trelloLink = driver.findElement(By.cssSelector("a[href*='https://trello.com']"));
-        trelloLink.click();
+        userNameTxtBox = By.cssSelector("#username");
+        driver.findElement(userNameTxtBox).sendKeys(username);
+
+        loginBtn = By.cssSelector("#login-submit");
+        driver.findElement(loginBtn).click();
+
+        passwordTxtBox = By.cssSelector("#password");
+        driver.findElement(this.passwordTxtBox).sendKeys(password);
+
+        loginSubmitBtn = By.cssSelector("#login-submit");
+        driver.findElement(loginSubmitBtn).click();
+
+        trelloLink = By.cssSelector("a[href*='https://trello.com']");
+        driver.findElement(this.trelloLink).click();
 
         return new BoardsPage(driver);
     }
