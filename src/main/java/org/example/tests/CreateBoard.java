@@ -65,7 +65,7 @@ public class CreateBoard {
     public void demoTrello() {
         LoginPage loginPage = new LoginPage();
 
-        BoardsPage boardsPage = loginPage.loginAs("ui.automation2021@gmail.com", "Automation1234");
+        BoardsPage boardsPage = loginPage.loginAs("", "");
         BoardPage boardPage = boardsPage.createNewBoard("NewName");
 
 //        driver.quit();
