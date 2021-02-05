@@ -6,13 +6,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class Demo {
+public class CreateBoard {
 
     @Test
     public void demo() {
@@ -58,5 +56,15 @@ public class Demo {
         assertEquals(successfullyMessageExpected, message.getText());
 
         driver.quit();
+    }
+
+    @Test
+    public void demoTrello() {
+        LoginPage loginPage = new LoginPage();
+
+        BoardsPage boardsPage = loginPage.loginAs("ui.automation2021@gmail.com", "Automation1234");
+        BoardPage boardPage = boardsPage.createNewBoard("NewName");
+
+//        driver.quit();
     }
 }
