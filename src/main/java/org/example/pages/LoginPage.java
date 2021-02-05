@@ -4,18 +4,31 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
 
     private WebDriver driver;
-    private By trelloLink;
-    private By userNameTxtBox;
-    private By loginBtn;
-    private By passwordTxtBox;
-    private By loginSubmitBtn;
+
+    @FindBy(css = "a[href*='https://trello.com']")
+    private WebElement trelloLink;
+
+    @FindBy(css = "#username")
+    private WebElement usernameTxtBox;
+
+    @FindBy(css = "#login-submit")
+    private WebElement loginBtn;
+
+    @FindBy(css = "#password")
+    private WebElement passwordTxtBox;
+
+    @FindBy(css = "#login-submit")
+    private WebElement loginSubmitBtn;
 
 
     public LoginPage(){
@@ -26,28 +39,21 @@ public class LoginPage {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
+        // windows size
         driver.manage().window().setSize(new Dimension(1024, 1366));
 
         // load url
         driver.get("https://id.atlassian.com/login");
+
+        PageFactory.initElements(driver, this);
     }
 
     public BoardsPage loginAs(String username, String password) {
-        userNameTxtBox = By.cssSelector("#username");
-        driver.findElement(userNameTxtBox).sendKeys(username);
-
-        loginBtn = By.cssSelector("#login-submit");
-        driver.findElement(loginBtn).click();
-
-        passwordTxtBox = By.cssSelector("#password");
-        driver.findElement(this.passwordTxtBox).sendKeys(password);
-
-        loginSubmitBtn = By.cssSelector("#login-submit");
-        driver.findElement(loginSubmitBtn).click();
-
-        trelloLink = By.cssSelector("a[href*='https://trello.com']");
-        driver.findElement(this.trelloLink).click();
-
+        usernameTxtBox.sendKeys(username);
+        loginBtn.click();
+        passwordTxtBox.sendKeys(password);
+        loginSubmitBtn.click();
+        trelloLink.click();
         return new BoardsPage(driver);
     }
 }
